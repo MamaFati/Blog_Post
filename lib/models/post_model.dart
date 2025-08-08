@@ -1,11 +1,31 @@
-class PostModel {
-  final String id;
-  final String content;
-  final String? filePath;
-  final DateTime timestamp;
-  final String author;
-  final bool isPublic;
+import 'package:hive/hive.dart';
+
+part 'post_model.g.dart';
+
+@HiveType(typeId: 0)
+class PostModel extends HiveObject {
+  @HiveField(0)
+  String id;
+
+  @HiveField(1)
+  String content;
+
+  @HiveField(2)
+  String? filePath;
+
+  @HiveField(3)
+  DateTime timestamp;
+
+  @HiveField(4)
+  String author;
+
+  @HiveField(5)
+  bool isPublic;
+
+  @HiveField(6)
   int likes;
+
+  @HiveField(7)
   List<Comment> comments;
 
   PostModel({
@@ -20,11 +40,19 @@ class PostModel {
   });
 }
 
-class Comment {
-  final String id;
-  final String author;
-  final String text;
-  final List<Reply> replies;
+@HiveType(typeId: 1)
+class Comment extends HiveObject {
+  @HiveField(0)
+  String id;
+
+  @HiveField(1)
+  String author;
+
+  @HiveField(2)
+  String text;
+
+  @HiveField(3)
+  List<Reply> replies;
 
   Comment({
     required this.id,
@@ -34,10 +62,16 @@ class Comment {
   });
 }
 
-class Reply {
-  final String id;
-  final String author;
-  final String text;
+@HiveType(typeId: 2)
+class Reply extends HiveObject {
+  @HiveField(0)
+  String id;
+
+  @HiveField(1)
+  String author;
+
+  @HiveField(2)
+  String text;
 
   Reply({
     required this.id,

@@ -3,25 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:provider/provider.dart';
 import '../../providers/post_provider.dart';
+import '../../models/post_model.dart';
 
-class CreatePostPage extends StatefulWidget {
-  const CreatePostPage({super.key});
+class EditPostPage extends StatefulWidget {
+  final PostModel post;
+  const EditPostPage({super.key, required this.post});
 
   @override
-  State<CreatePostPage> createState() => _CreatePostPageState();
+  State<EditPostPage> createState() => _EditPostPageState();
 }
 
-class _CreatePostPageState extends State<CreatePostPage> {
+class _EditPostPageState extends State<EditPostPage> {
   final _formKey = GlobalKey<FormState>();
-  final _contentController = TextEditingController();
-  bool _isPublic = true;
+  late TextEditingController _contentController;
+  late bool _isPublic;
   String? _selectedFilePath;
+
+  @override
+  void initState() {
+    super.initState();
+    _contentController = TextEditingController(text: widget.post.content);
+    _isPublic = widget.post.isPublic;
+    _selectedFilePath = widget.post.filePath;
+  }
 
   Future<void> _pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'png', 'pdf', 'doc'],
     );
+
     if (result != null && result.files.isNotEmpty) {
       setState(() {
         _selectedFilePath = result.files.single.path;
@@ -29,12 +40,12 @@ class _CreatePostPageState extends State<CreatePostPage> {
     }
   }
 
-  void _submit() {
+  void _updatePost() {
     if (_formKey.currentState!.validate()) {
-      Provider.of<PostProvider>(context, listen: false).addPost(
-        content: _contentController.text.trim(),
-        filePath: _selectedFilePath,
-        author: "user@example.com",
+      Provider.of<PostProvider>(context, listen: false).updatePost(
+        widget.post.id,
+        _contentController.text.trim(),
+        newFilePath: _selectedFilePath,
         isPublic: _isPublic,
       );
       Navigator.pop(context);
@@ -48,7 +59,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
             _selectedFilePath!.endsWith('.png'));
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Create Post")),
+      appBar: AppBar(title: const Text("Edit Post")),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -71,7 +82,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 ElevatedButton.icon(
                   onPressed: _pickFile,
                   icon: const Icon(Icons.attach_file),
-                  label: const Text("Attach File"),
+                  label: const Text("Change File"),
                 ),
                 if (_selectedFilePath != null) ...[
                   const SizedBox(height: 10),
@@ -110,8 +121,8 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _submit,
-                    child: const Text("Post"),
+                    onPressed: _updatePost,
+                    child: const Text("Update Post"),
                   ),
                 ),
               ],
