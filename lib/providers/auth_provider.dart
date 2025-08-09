@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool _isAuthenticated = false;
-  bool get isAuthenticated => _isAuthenticated;
+  
+  String? _userEmail;
 
-  final String _mockUsername = 'abufati876@gmail.com';
-  final String _mockPassword = '24611';
+  String? get userEmail => _userEmail;
+  bool get isLoggedIn => _userEmail != null;
 
-  bool login(String username, String password) {
-    if (username == _mockUsername && password == _mockPassword) {
-      _isAuthenticated = true;
-      notifyListeners();
-      return true;
-    }
-    return false;
+  AuthProvider() {
+    _loadUser();
   }
 
-  void logout() {
-    _isAuthenticated = false;
+  Future<void> _loadUser() async {
+    final box = await Hive.openBox('settings');
+    _userEmail = box.get('userEmail');
     notifyListeners();
   }
+
+  Future<void> login(String email) async {
+    _userEmail = email;
+    final box = await Hive.openBox('settings');
+    await box.put('userEmail', email);
+    notifyListeners();
+  }
+
+  Future<void> logout() async {
+    _userEmail = null;
+    final box = await Hive.openBox('settings');
+    await box.delete('userEmail');
+    notifyListeners();
+  }
+  
 }

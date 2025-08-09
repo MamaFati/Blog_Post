@@ -7,7 +7,7 @@ import '../auth/login_page.dart';
 import '../home/home_page.dart';
 import '../post/archive_page.dart';
 import '../settings/profilePage_page.dart';
- 
+
 import '../post/create_post_page.dart';
 
 class MainNavigationPage extends StatefulWidget {
@@ -67,7 +67,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
@@ -84,6 +84,9 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                 );
               },
               child: const Icon(Icons.add),
+              tooltip: "Create Post",
+              backgroundColor: Colors.blueAccent,
+              foregroundColor: Colors.white,
             )
           : null,
     );
