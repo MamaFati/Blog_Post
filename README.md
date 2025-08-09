@@ -17,23 +17,32 @@ This app allows users to create, edit, view, and manage blog posts with file att
   - Delete posts
   - Like posts
   - Public and Private visibility settings
+  - Post includes metadata (Timestamp,Author's Name)
+
+- **Interactions**
+  - Enable (likes,comments,reples to comments)
+  - Private posts are stored in user archive (only accessible my user)
+  - Public post are displayed 
 
 - **UI & Animations**
   - Splash screen with fade animation
   - Creative post creation/edit screens with emoji backgrounds
   - Smooth transitions and animated form elements
-
+ 
 - **Navigation**
   - Bottom navigation for Home, Archives, and Profile
   - Floating action button for creating posts
+  - Dark mode toggle
 
 ---
+## Usages
+`Login: Use email: abufati@876@gmail.com, password:  24611`.
 
 ## 📸 Screenshots
 
-| Splash Screen | Login Page | Home Page |
-|--------------|------------|-----------|
-| ![Splash Screen](lib/assets/sreenshots/splashPage.jpg) | ![Login Page](lib/assets/sreenshots/Screenshot_20250809_175754.jpg) | ![Home Page](lib/assets/sreenshots/Screenshot_20250809_175809.jpg) | ![Edit Page] (lib/assets/sreenshots/Screenshot_20250809_180003.jpg)
+| Splash Screen | Login Page | Home Page | Edit Page |
+|--------------|------------|-----------|-------------|
+|![Splash Screen](lib/assets/sreenshots/ splashPage.jpg) | ![Login Page](lib/assets/sreenshots/Screenshot_20250809_175754.jpg) | ![Home Page](lib/assets/sreenshots/Screenshot_20250809_175809.jpg) |![Edit Page] (lib/assets/sreenshots/Screenshot_20250809_180003.jpg)
 
 ---
 
