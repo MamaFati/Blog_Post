@@ -40,8 +40,8 @@ This app allows users to create, edit, view, and manage blog posts with file att
 
 ## 📸 Screenshots
 
-| Splash Screen | Login Page | Home Page | Edit Page | Profile Page | Archive Page | Profile Page | Comment Page |
-|--------------|------------|----------- |-----------| ------------ | ------------ | ------------ | ------------ |
+| Splash Screen | Login Page | Home Page | Edit Page | Profile Page | Archive Page | Comment Page |
+|--------------|------------|----------- |-----------| ------------ | ------------ |  ------------ |
 |![Splash Screen](lib/assets/sreenshots/splashPage.jpg) | ![Login Page](lib/assets/sreenshots/Screenshot_20250809_175754.jpg) | ![Home Page](lib/assets/sreenshots/Screenshot_20250809_175809.jpg) |![Edit Page](lib/assets/sreenshots/Screenshot_20250809_180003.jpg)| ![Profile Page](lib/assets/sreenshots/Screenshot_20250809_175930.jpg)| ![Archives Page](lib/assets/sreenshots/Screenshot_20250809_175926.jpg) | ![Comments Page](lib/assets/sreenshots/Screenshot_20250809_175940.jpg)
 
 ---
